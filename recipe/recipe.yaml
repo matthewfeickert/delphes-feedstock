@@ -19,7 +19,7 @@ source:
     - use-range-of-supported-cmake.patch
 
 build:
-  number: 5
+  number: 6
   skip:
     - win
   script:
