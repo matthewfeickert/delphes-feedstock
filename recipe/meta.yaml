@@ -23,11 +23,11 @@ build:
     - grep -r -l "external/" examples/ | xargs sed -i 's|external/||g'  # [linux]
     - grep -r -l "external/" examples/ | xargs sed -i '' 's|external/||g'  # [osx]
 
-    - CXXFLAGS="${CXXFLAGS}" cmake -DCMAKE_INSTALL_PREFIX=$PREFIX -DPYTHIA8_DATA=$(pythia8-config --datadir) -S . -B build
+    - CXXFLAGS="${CXXFLAGS}" cmake ${CMAKE_ARGS} -DCMAKE_INSTALL_PREFIX=$PREFIX -DPYTHIA8_DATA=$(pythia8-config --datadir) -S . -B build
     - cmake build -LH
     - cmake --build build --clean-first --parallel="${CPU_COUNT}"
     - cmake --install build
-  number: 1
+  number: 2
 
 requirements:
   build:
