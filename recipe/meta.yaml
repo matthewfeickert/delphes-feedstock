@@ -27,7 +27,7 @@ build:
     - cmake build -LH
     - cmake --build build --clean-first --parallel="${CPU_COUNT}"
     - cmake --install build
-  number: 0
+  number: 1
 
 requirements:
   build:
@@ -36,11 +36,7 @@ requirements:
     - cmake
     - make
   host:
-    # TODO: After the feedstock is made
-    #   * Remove the version constraint from root_base
-    #   * pick up the migration file manaully
-    #   * re-render the repository
-    - root_base 6.32.2
+    - root_base
     - pythia8
 
 test:

@@ -15,10 +15,10 @@ curl:
 cxx_compiler:
 - clangxx
 cxx_compiler_version:
-- '17'
+- '18'
 macos_machine:
 - x86_64-apple-darwin13.4.0
 root_base:
-- 6.32.0
+- 6.32.8
 target_platform:
 - osx-64
