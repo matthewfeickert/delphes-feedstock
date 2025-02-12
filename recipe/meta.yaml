@@ -27,7 +27,7 @@ build:
     - cmake build -LH
     - cmake --build build --clean-first --parallel="${CPU_COUNT}"
     - cmake --install build
-  number: 2
+  number: 3
 
 requirements:
   build:
