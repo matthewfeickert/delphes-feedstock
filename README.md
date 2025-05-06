@@ -24,7 +24,6 @@ magnetic field, the granularity of the calorimeters and sub-detector resolutions
 Visualisation of the final state particles is also built-in using the
 corresponding ROOT library.
 
-
 Current build status
 ====================
 
