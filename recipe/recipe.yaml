@@ -15,6 +15,8 @@ source:
     - Delphes-ClosestPair2D-fwdDeclaration.patch
     # c.f. https://github.com/delphes/delphes/commit/64de5a479b94beba357e73c926cdc6ee9114ceec
     - remove_binary_function.patch
+    # c.f. https://github.com/delphes/delphes/pull/154
+    - use-range-of-supported-cmake.patch
 
 build:
   number: 5
