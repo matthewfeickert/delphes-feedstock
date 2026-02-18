@@ -1,6 +1,6 @@
 context:
   name: "delphes"
-  version: "3.5.0"
+  version: "3.5.1"
 
 package:
   name: ${{ name }}
@@ -8,18 +8,14 @@ package:
 
 source:
   url: https://github.com/delphes/${{ name }}/archive/refs/tags/${{ version }}.tar.gz
-  sha256: 30a2536e0c8f47d633ecf3b4d51ec9924af54538e492470ad47b4ed34342f063
+  sha256: b60d26d2ee2c84b58fbf2cf397fabd0ef3e89d3a0546d843c4ada82cc802d787
   patches:
     # Fixes builds for macOS
     # c.f. https://github.com/delphes/delphes/pull/128
     - Delphes-ClosestPair2D-fwdDeclaration.patch
-    # c.f. https://github.com/delphes/delphes/commit/64de5a479b94beba357e73c926cdc6ee9114ceec
-    - remove_binary_function.patch
-    # c.f. https://github.com/delphes/delphes/pull/154
-    - use-range-of-supported-cmake.patch
 
 build:
-  number: 6
+  number: 0
   skip:
     - win
   script:
