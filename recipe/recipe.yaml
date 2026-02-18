@@ -26,7 +26,7 @@ build:
     # Make the examples location independent by removing the 'external/' prefix
     # in includes to instead use the installed versions
     - grep -r -l "external/" examples/ | xargs sed -i 's|external/||g'
-    - CXXFLAGS="${CXXFLAGS}" cmake ${CMAKE_ARGS} -DCMAKE_INSTALL_PREFIX=$PREFIX -DPYTHIA8_DATA=$(pythia8-config --datadir) -S . -B build
+    - CXXFLAGS="${CXXFLAGS}" cmake ${CMAKE_ARGS} -DPYTHIA8_DATA=$(pythia8-config --datadir) -S . -B build
     - cmake build -LH
     - cmake --build build --clean-first --parallel="${CPU_COUNT}"
     - cmake --install build
@@ -41,7 +41,10 @@ requirements:
     - sed
   host:
     - root_base
+    - root_cxx_standard
     - pythia8
+  run_exports:
+    - ${{ pin_subpackage("delphes", upper_bound="x.x.x") }}
 
 tests:
   - script:
@@ -71,7 +74,6 @@ tests:
 
     requirements:
       run:
-        - ${{ compiler('cxx') }}
         - root_base
         - pythia8
         - gzip
