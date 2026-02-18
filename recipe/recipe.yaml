@@ -10,9 +10,6 @@ source:
   url: https://github.com/delphes/${{ name }}/archive/refs/tags/${{ version }}.tar.gz
   sha256: b60d26d2ee2c84b58fbf2cf397fabd0ef3e89d3a0546d843c4ada82cc802d787
   patches:
-    # Fixes builds for macOS
-    # c.f. https://github.com/delphes/delphes/pull/128
-    - Delphes-ClosestPair2D-fwdDeclaration.patch
     # std::prev_permutation needs <algorithm>, not transitively included on osx
     - add-missing-algorithm-include.patch
 
