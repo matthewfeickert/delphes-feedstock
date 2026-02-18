@@ -18,5 +18,10 @@ macos_machine:
 - x86_64-apple-darwin13.4.0
 root_base:
 - 6.36.8
+root_cxx_standard:
+- '20'
 target_platform:
 - osx-64
+zip_keys:
+- - root_base
+  - root_cxx_standard
