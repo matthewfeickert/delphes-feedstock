@@ -9,3 +9,14 @@ diff --git a/external/fastjet/contribs/Nsubjettiness/AxesDefinition.hh b/externa
  #include <list>
 
  FASTJET_BEGIN_NAMESPACE      // defined in fastjet/internal/base.hh
+diff --git a/external/fastjet/contribs/SoftKiller/SoftKiller.cc b/external/fastjet/contribs/SoftKiller/SoftKiller.cc
+--- a/external/fastjet/contribs/SoftKiller/SoftKiller.cc
++++ b/external/fastjet/contribs/SoftKiller/SoftKiller.cc
+@@ -20,6 +20,7 @@
+ //----------------------------------------------------------------------
+
+ #include "SoftKiller.hh"
++#include <algorithm>
+ #include <sstream>
+
+ using namespace std;
