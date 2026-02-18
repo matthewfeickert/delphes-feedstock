@@ -19,7 +19,7 @@ source:
     - use-range-of-supported-cmake.patch
 
 build:
-  number: 5
+  number: 6
   skip:
     - win
   script:
@@ -59,7 +59,8 @@ tests:
       - gunzip z_ee.hep.gz
       - DelphesSTDHEP "${PREFIX}"/cards/delphes_card_CMS.tcl delphes_output.root z_ee.hep
 
-      - # avoid lots of output to stdout
+      - 
+        # avoid lots of output to stdout
       - root -l -b -q "${PREFIX}"/examples/Example1.C'("delphes_output.root")' &> /dev/null
       - root -l -b -q "${PREFIX}"/examples/Example2.C'("delphes_output.root")'
       - root -l -b -q "${PREFIX}"/examples/Example3.C'("delphes_output.root")'
