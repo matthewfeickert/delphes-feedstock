@@ -1,20 +1,19 @@
 context:
-  name: "delphes"
   version: "3.5.1"
 
 package:
-  name: ${{ name }}
+  name: "delphes"
   version: ${{ version }}
 
 source:
-  url: https://github.com/delphes/${{ name }}/archive/refs/tags/${{ version }}.tar.gz
+  url: https://github.com/delphes/delphes/archive/refs/tags/${{ version }}.tar.gz
   sha256: b60d26d2ee2c84b58fbf2cf397fabd0ef3e89d3a0546d843c4ada82cc802d787
   patches:
     # std::prev_permutation needs <algorithm>, not transitively included on osx
     - add-missing-algorithm-include.patch
 
 build:
-  number: 0
+  number: 1
   skip:
     - win
   script:
@@ -42,23 +41,22 @@ requirements:
     - ${{ pin_subpackage("delphes", upper_bound="x.x.x") }}
 
 tests:
-  - script:
-      # Running the 'DelphesXXX --help' commands results in exit code 1,
-      # so check for existence instead.
-      - test -f "${PREFIX}"/bin/DelphesHepMC2
-      - test -f "${PREFIX}"/bin/DelphesHepMC3
-      - test -f "${PREFIX}"/bin/DelphesLHEF
-      - test -f "${PREFIX}"/bin/DelphesPythia8
-      - test -f "${PREFIX}"/bin/DelphesROOT
-      - test -f "${PREFIX}"/bin/DelphesSTDHEP
+  - package_contents:
+      bin:
+        - DelphesHepMC2
+        - DelphesHepMC3
+        - DelphesLHEF
+        - DelphesPythia8
+        - DelphesROOT
+        - DelphesSTDHEP
 
+  - script:
       # N.B.: MUST be http not https (unfortunately)
       - curl -LO http://cp3.irmp.ucl.ac.be/downloads/z_ee.hep.gz
       - gunzip z_ee.hep.gz
       - DelphesSTDHEP "${PREFIX}"/cards/delphes_card_CMS.tcl delphes_output.root z_ee.hep
 
-      - 
-        # avoid lots of output to stdout
+      # avoid lots of output to stdout
       - root -l -b -q "${PREFIX}"/examples/Example1.C'("delphes_output.root")' &> /dev/null
       - root -l -b -q "${PREFIX}"/examples/Example2.C'("delphes_output.root")'
       - root -l -b -q "${PREFIX}"/examples/Example3.C'("delphes_output.root")'
