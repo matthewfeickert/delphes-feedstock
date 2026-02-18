@@ -1,0 +1,11 @@
+diff --git a/external/fastjet/contribs/Nsubjettiness/AxesDefinition.hh b/external/fastjet/contribs/Nsubjettiness/AxesDefinition.hh
+--- a/external/fastjet/contribs/Nsubjettiness/AxesDefinition.hh
++++ b/external/fastjet/contribs/Nsubjettiness/AxesDefinition.hh
+@@ -34,6 +34,7 @@
+ #include <iomanip>
+ #include <cmath>
+ #include <vector>
++#include <algorithm>
+ #include <list>
+
+ FASTJET_BEGIN_NAMESPACE      // defined in fastjet/internal/base.hh

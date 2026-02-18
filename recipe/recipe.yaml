@@ -13,6 +13,8 @@ source:
     # Fixes builds for macOS
     # c.f. https://github.com/delphes/delphes/pull/128
     - Delphes-ClosestPair2D-fwdDeclaration.patch
+    # std::prev_permutation needs <algorithm>, not transitively included on osx
+    - add-missing-algorithm-include.patch
 
 build:
   number: 0
