@@ -8,14 +8,42 @@ jobs:
     vmImage: ubuntu-latest
   strategy:
     matrix:
-      linux_64_root_base6.32.10:
-        CONFIG: linux_64_root_base6.32.10
+      linux_64_root_base6.36.8root_cxx_standard20:
+        CONFIG: linux_64_root_base6.36.8root_cxx_standard20
         UPLOAD_PACKAGES: 'True'
         DOCKER_IMAGE: quay.io/condaforge/linux-anvil-x86_64:alma9
-      linux_64_root_base6.34.4:
-        CONFIG: linux_64_root_base6.34.4
+      linux_64_root_base6.38.0root_cxx_standard20:
+        CONFIG: linux_64_root_base6.38.0root_cxx_standard20
         UPLOAD_PACKAGES: 'True'
         DOCKER_IMAGE: quay.io/condaforge/linux-anvil-x86_64:alma9
+      linux_64_root_base6.38.0root_cxx_standard23:
+        CONFIG: linux_64_root_base6.38.0root_cxx_standard23
+        UPLOAD_PACKAGES: 'True'
+        DOCKER_IMAGE: quay.io/condaforge/linux-anvil-x86_64:alma9
+      linux_aarch64_root_base6.36.8root_cxx_standard20:
+        CONFIG: linux_aarch64_root_base6.36.8root_cxx_standard20
+        UPLOAD_PACKAGES: 'True'
+        DOCKER_IMAGE: quay.io/condaforge/linux-anvil-aarch64:alma9
+      linux_aarch64_root_base6.38.0root_cxx_standard20:
+        CONFIG: linux_aarch64_root_base6.38.0root_cxx_standard20
+        UPLOAD_PACKAGES: 'True'
+        DOCKER_IMAGE: quay.io/condaforge/linux-anvil-aarch64:alma9
+      linux_aarch64_root_base6.38.0root_cxx_standard23:
+        CONFIG: linux_aarch64_root_base6.38.0root_cxx_standard23
+        UPLOAD_PACKAGES: 'True'
+        DOCKER_IMAGE: quay.io/condaforge/linux-anvil-aarch64:alma9
+      linux_ppc64le_root_base6.36.8root_cxx_standard20:
+        CONFIG: linux_ppc64le_root_base6.36.8root_cxx_standard20
+        UPLOAD_PACKAGES: 'True'
+        DOCKER_IMAGE: quay.io/condaforge/linux-anvil-ppc64le:alma9
+      linux_ppc64le_root_base6.38.0root_cxx_standard20:
+        CONFIG: linux_ppc64le_root_base6.38.0root_cxx_standard20
+        UPLOAD_PACKAGES: 'True'
+        DOCKER_IMAGE: quay.io/condaforge/linux-anvil-ppc64le:alma9
+      linux_ppc64le_root_base6.38.0root_cxx_standard23:
+        CONFIG: linux_ppc64le_root_base6.38.0root_cxx_standard23
+        UPLOAD_PACKAGES: 'True'
+        DOCKER_IMAGE: quay.io/condaforge/linux-anvil-ppc64le:alma9
   timeoutInMinutes: 360
   variables: {}
 

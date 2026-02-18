@@ -1,6 +1,6 @@
 context:
   name: "delphes"
-  version: "3.5.0"
+  version: "3.5.1"
 
 package:
   name: ${{ name }}
@@ -8,25 +8,20 @@ package:
 
 source:
   url: https://github.com/delphes/${{ name }}/archive/refs/tags/${{ version }}.tar.gz
-  sha256: 30a2536e0c8f47d633ecf3b4d51ec9924af54538e492470ad47b4ed34342f063
+  sha256: b60d26d2ee2c84b58fbf2cf397fabd0ef3e89d3a0546d843c4ada82cc802d787
   patches:
-    # Fixes builds for macOS
-    # c.f. https://github.com/delphes/delphes/pull/128
-    - Delphes-ClosestPair2D-fwdDeclaration.patch
-    # c.f. https://github.com/delphes/delphes/commit/64de5a479b94beba357e73c926cdc6ee9114ceec
-    - remove_binary_function.patch
-    # c.f. https://github.com/delphes/delphes/pull/154
-    - use-range-of-supported-cmake.patch
+    # std::prev_permutation needs <algorithm>, not transitively included on osx
+    - add-missing-algorithm-include.patch
 
 build:
-  number: 5
+  number: 0
   skip:
     - win
   script:
     # Make the examples location independent by removing the 'external/' prefix
     # in includes to instead use the installed versions
     - grep -r -l "external/" examples/ | xargs sed -i 's|external/||g'
-    - CXXFLAGS="${CXXFLAGS}" cmake ${CMAKE_ARGS} -DCMAKE_INSTALL_PREFIX=$PREFIX -DPYTHIA8_DATA=$(pythia8-config --datadir) -S . -B build
+    - CXXFLAGS="${CXXFLAGS}" cmake ${CMAKE_ARGS} -DPYTHIA8_DATA=$(pythia8-config --datadir) -S . -B build
     - cmake build -LH
     - cmake --build build --clean-first --parallel="${CPU_COUNT}"
     - cmake --install build
@@ -41,7 +36,10 @@ requirements:
     - sed
   host:
     - root_base
+    - root_cxx_standard
     - pythia8
+  run_exports:
+    - ${{ pin_subpackage("delphes", upper_bound="x.x.x") }}
 
 tests:
   - script:
@@ -59,7 +57,8 @@ tests:
       - gunzip z_ee.hep.gz
       - DelphesSTDHEP "${PREFIX}"/cards/delphes_card_CMS.tcl delphes_output.root z_ee.hep
 
-      - # avoid lots of output to stdout
+      - 
+        # avoid lots of output to stdout
       - root -l -b -q "${PREFIX}"/examples/Example1.C'("delphes_output.root")' &> /dev/null
       - root -l -b -q "${PREFIX}"/examples/Example2.C'("delphes_output.root")'
       - root -l -b -q "${PREFIX}"/examples/Example3.C'("delphes_output.root")'
@@ -70,7 +69,6 @@ tests:
 
     requirements:
       run:
-        - ${{ compiler('cxx') }}
         - root_base
         - pythia8
         - gzip
